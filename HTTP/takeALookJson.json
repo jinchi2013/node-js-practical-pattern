@@ -1,0 +1,14 @@
+{
+	"headers": {
+		"host": "localhost:8080",
+		"connection": "keep-alive",
+		"upgrade-insecure-requests": "1",
+		"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/51.0.2704.79 Chrome/51.0.2704.79 Safari/537.36",
+		"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+		"accept-encoding": "gzip, deflate, sdch",
+		"accept-language": "en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4"
+	},
+	"method": "GET",
+	"url": "/",
+	"body": ""
+}

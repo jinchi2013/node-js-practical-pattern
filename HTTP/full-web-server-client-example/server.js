@@ -2,6 +2,27 @@ const http = require('http');
 const fs = require('fs');
 const url = require('url');
 
+const os = require('os');
+const iFaces = os.networkInterfaces();
+const getLocalIp = () => {
+	var localIp ='';
+	Object.keys(iFaces).forEach( (ifName)=>{
+		//console.log(ifName);
+		iFaces[ifName].forEach( (iFace)=>{
+			//console.log(iFace);
+			if( iFace.family === 'IPv4' && iFace.internal === false){
+
+				localIp = iFace.address;
+			}
+		} );
+	} );
+	if( localIp === '' ){
+		return null;
+	}
+	return {
+		localIp: localIp
+	};
+};
 //Create a server
 http.createServer( (req, res)=>{
 	// Parse the request containing file name
@@ -30,7 +51,7 @@ http.createServer( (req, res)=>{
 		//Send the res body
 		res.end();
 	});
-}).listen(8081);
+}).listen(8081, `${getLocalIp().localIp}`);
 
 //Console will print the message
 console.log('Server running at port 8081');

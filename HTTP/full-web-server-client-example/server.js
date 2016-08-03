@@ -51,7 +51,7 @@ http.createServer( (req, res)=>{
 		//Send the res body
 		res.end();
 	});
-}).listen(8081, `${getLocalIp().localIp}`);
-
-//Console will print the message
-console.log('Server running at port 8081');
+}).listen(8081, `${getLocalIp().localIp}`, ()=>{
+	//Console will print the message
+	console.log('Server running at port 8081');
+});

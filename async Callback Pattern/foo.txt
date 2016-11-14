@@ -1,1 +1,1 @@
-this is footest.txt, which is a
+this is foo.txt, which is a test

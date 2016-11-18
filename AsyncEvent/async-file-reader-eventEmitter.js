@@ -9,10 +9,10 @@ const EventEmitter = require('events');
 const util = require('util');
 
 class FindPattern extends EventEmitter {
-	constructor (regex) {
+	constructor (regex, files) {
 		super();
 		this.regex = regex;
-		this.files = [];
+		this.files = files || [];
 	}
 
 	addFile (file) {

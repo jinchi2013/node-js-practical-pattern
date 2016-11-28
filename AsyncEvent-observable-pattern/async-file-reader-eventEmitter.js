@@ -1,4 +1,4 @@
-/*
+/**
 	observable object pattern 	
 */
 

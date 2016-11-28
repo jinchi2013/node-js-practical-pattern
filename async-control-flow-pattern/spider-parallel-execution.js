@@ -70,7 +70,15 @@ function download(url, filename, callback) {
     })
 }
 
+let spidering = {};
+
 function spider(url, nesting, callback) {
+    // use global spidering object in the global to avoid RACE condition !
+    if( spidering[url] ) {
+        return process.nextTick(callback);
+    }
+    spidering[url] = true;
+    // ^^^^^^^^^^^^^^^^^^^
     let filename = utils.filename(url);
     fs.readFile(filename, 'utf8', (err, body)=>{
         if(err) {

@@ -5,14 +5,15 @@ const request = require('request');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const path = require('path');
-const utilities = require('./utils/utilities');
+const Utilities = require('./utils/utilities');
 
 /**
  * Callback issue
  * */
 
 function spider(url, callback) {
-    let filename = utilities.urlToFilename(url);
+    let utilities = new Utilities(url);
+    let filename = utilities.filename(url);
     fs.exists(filename, function(exists) {
         if(!exists) {
             console.log("Downloading " + url);

@@ -74,7 +74,16 @@ function download(url, filename, callback) {
     })
 }
 
+let spidering = {};
+
 function spider(url, nesting, callback) {
+    // Use this condition to avoid RACE Condition !
+    if(spidering[url]) {
+        return process.nextTick(callback);
+    }
+    spidering[url] = true;
+    // ^^^^^^^^^^^^^^^^^^^^
+    
     let filename = utils.filename(url);
     fs.readFile(filename, 'utf8', (err, body)=>{
         if(err) {

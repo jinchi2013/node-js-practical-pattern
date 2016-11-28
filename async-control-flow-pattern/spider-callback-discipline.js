@@ -6,7 +6,8 @@ const request = require('request');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const path = require('path');
-const Utilities = require('./utils/utilities');
+const Utils = require('./utils/utilities');
+let utils = new Utils();
 
 /**
  * Use simple callback discipline to resolve callback hell
@@ -38,8 +39,7 @@ function download(url, filename, callback) {
 }
 
 function spider(url, callback) {
-    let utilities = new Utilities(url);
-    let filename = utilities.filename();
+    let filename = utils.filename(url);
 
     fs.exists(filename, (exists)=>{
         if(exists) {

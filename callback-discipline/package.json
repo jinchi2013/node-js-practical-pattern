@@ -1,0 +1,17 @@
+{
+  "name": "callback-discipline",
+  "version": "1.0.0",
+  "description": "",
+  "main": "spider-callback-discipline.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cj",
+  "license": "ISC",
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "request": "^2.79.0",
+    "slug": "^0.9.1",
+    "url": "^0.11.0"
+  }
+}

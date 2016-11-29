@@ -20,7 +20,7 @@ let downloadQueue = async.queue((taskData, callback)=>{
     spider(taskData.link, taskData.nesting - 1, callback );
 }, 2);
 
-function spidedrLinks(currentUrl, body, nesting, callback) {
+function spiderLinks(currentUrl, body, nesting, callback) {
     if(nesting === 0) {
         return process.nextTick(callback);
     }
@@ -90,11 +90,11 @@ function spider(url, nesting, callback) {
                 if(err) {
                     return callback(err);
                 }
-                spidedrLinks(url, body, nesting, callback);
+                spiderLinks(url, body, nesting, callback);
             });
         }
 
-        spidedrLinks(url, body, nesting, callback);
+        spiderLinks(url, body, nesting, callback);
     });
 }
 

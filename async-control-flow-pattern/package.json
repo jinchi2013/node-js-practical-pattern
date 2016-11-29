@@ -9,6 +9,7 @@
   "author": "cj",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.1.4",
     "cheerio": "^0.22.0",
     "mkdirp": "^0.5.1",
     "request": "^2.79.0",

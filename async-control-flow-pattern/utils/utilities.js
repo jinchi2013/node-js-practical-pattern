@@ -40,13 +40,33 @@ class utils {
     }
 
     getPageLinks (currentUrl, body) {
-        return [].slice.call(cheerio.load(body)('a'))
+        return Array.slice.call(cheerio.load(body)('a'))
             .map((element) => {
                 return this.getLinkUrl(currentUrl, element);
             }).bind(this)
             .filter((element) =>{
                 return !!element;
             });
+    }
+
+    promisify (callbackBasedApi) {
+        return function promisified() {
+            let args = Array.slice.call(arguments);
+            let promise = new Promise((resolve, reject)=>{
+                args.push((err, result) => {
+                    if(err) {
+                        return reject(err);
+                    }
+                    if(arguments.length <= 2) {
+                        resolve(result);
+                    } else {
+                        resolve(Array.slice.call(arguments, 1));
+                    }
+                });
+                callbackBasedApi.apply(null, args);
+            });
+            return promise;
+        };
     }
 }
 

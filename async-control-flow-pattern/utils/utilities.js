@@ -51,7 +51,7 @@ class utils {
 
     promisify (callbackBasedApi) {
         return function promisified() {
-            let args = Array.slice.call(arguments);
+            let args = Array.prototype.slice.call(arguments);
             let promise = new Promise((resolve, reject)=>{
                 args.push((err, result) => {
                     if(err) {
@@ -60,7 +60,7 @@ class utils {
                     if(arguments.length <= 2) {
                         resolve(result);
                     } else {
-                        resolve(Array.slice.call(arguments, 1));
+                        resolve(Array.prototype.slice.call(arguments, 1));
                     }
                 });
                 callbackBasedApi.apply(null, args);

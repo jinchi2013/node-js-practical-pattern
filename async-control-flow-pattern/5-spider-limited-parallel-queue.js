@@ -1,6 +1,3 @@
-/**
- * Created by CalvinJ on 11/28/2016.
- */
 "use strict";
 
 const request = require('request');
@@ -26,7 +23,8 @@ function spiderLinks(currentUrl, body, nesting, callback) {
 
     let completed =0, errored = false;
     links.forEach((link)=>{
-        downloadQueue.pushTask(
+        downloadQueue.pushTask.bind(
+            downloadQueue,
             // push below function into taskQueue
             // done is a callback to execute later
             (done)=>{

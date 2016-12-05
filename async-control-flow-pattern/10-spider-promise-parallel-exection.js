@@ -30,7 +30,7 @@ function spiderLinks(currentUrl, body, nesting) {
 function download(url, filename) {
     console.log(`Downloading ${url}`);
     let body;
-    return request(url).then( (result)=>{
+    return request(url).then( (result) => {
         body = result[1];
         return mkdirp(path.dirname(filename));
     }).then( () => {

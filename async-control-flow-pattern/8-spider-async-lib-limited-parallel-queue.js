@@ -30,7 +30,11 @@ function spiderLinks(currentUrl, body, nesting, callback) {
     }
     let completed = 0, errored= false;
     links.forEach((link)=>{
-        let taskData = {link: link, nesting: nesting};
+        let taskData = {
+            link: link,
+            nesting: nesting
+        };
+
         downloadQueue.push(taskData, (err)=>{
             if(err) {
                 errored = true;

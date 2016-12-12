@@ -31,6 +31,6 @@ fs.createReadStream(file)
     });
 
 /**
- * node gzipSend.js ../I-spatial-efficiency/test localhost
+ * node gzipSend.js ../testFileSource/test localhost
  * to send the request of the file path and host name
  * */

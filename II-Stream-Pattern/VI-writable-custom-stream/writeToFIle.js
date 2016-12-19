@@ -7,7 +7,7 @@ const tfs = new ToFileStream({objectMode: true});
 // created at the given path.
 // We cae see that the input of our stream are objects
 // and not strings or buffers;
-// this means that our stream has to work in oject mode
+// this means that our stream has to work in object mode
 tfs.write.call(tfs, {path: "./test/file1.txt", content: "Hello"}, 'utf8', () => {
     console.log('file1 done');
 });

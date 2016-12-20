@@ -1,5 +1,8 @@
 "use strict";
 
+// execute following in the conmand line
+// echo Hello World! | node replace.js World Node.js
+
 const ReplaceStream = require('./replaceStream');
 
 process.stdin

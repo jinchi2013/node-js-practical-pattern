@@ -9,6 +9,7 @@ const PORT = '6969';
 // The function passed to net.createServer() becomes the event handler for the 'connection' event
 // The sock object the callback function receives UNIQUE for each connection
 
+// net module will create a tcp socket server
 net.createServer((sock) => {
 
     console.log(`CONNECTED: ${sock.remoteAddress} : ${sock.remotePort}`);

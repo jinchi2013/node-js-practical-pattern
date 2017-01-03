@@ -1,0 +1,16 @@
+{
+  "name": "12-pipes-ordered-parallel-execution",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CJ",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.79.0",
+    "split": "^1.0.0",
+    "through2-parallel": "^0.1.3"
+  }
+}

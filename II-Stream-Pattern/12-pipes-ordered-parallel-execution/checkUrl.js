@@ -6,6 +6,9 @@ const request = require('request');
 const throughParallel = require('through2-parallel');
 /**
  * Creates a through stream (Transform stream) which executes in parallel while maintaining the order of the emitted chunks.
+ *
+ *  Please compare with the 9-pipes-sequential-execution concatFile.js
+ *  which use through2 module to implement sequential execution
  * */
 
 fs.createReadStream(process.argv[2])

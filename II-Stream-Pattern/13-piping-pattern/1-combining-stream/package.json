@@ -1,0 +1,14 @@
+{
+  "name": "1-combining-stream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CJ",
+  "license": "ISC",
+  "dependencies": {
+    "multipipe": "^1.0.2"
+  }
+}

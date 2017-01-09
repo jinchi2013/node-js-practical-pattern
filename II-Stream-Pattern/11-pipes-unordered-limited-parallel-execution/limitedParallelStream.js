@@ -16,6 +16,7 @@ class LimitedParallelStream extends stream.Transform {
         this.running++;
         this.userTransform(chunk, encode, this._onComplete.bind(this));
         if(this.running < this.concurrency) {
+            // the done function will invoke the next chunk of data
             done();
         } else {
             this.continueCallback = done;
@@ -36,6 +37,7 @@ class LimitedParallelStream extends stream.Transform {
         }
     }
 
+    // flush will invoke just before the stream end (all chunks of data got went into the Transform stream)
     _flush (done) {
         if(this.running > 0) {
             this.terminateCallback = done;

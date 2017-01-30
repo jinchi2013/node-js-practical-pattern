@@ -4,7 +4,7 @@ function promisify (callbackBasedApi) {
     // the arrow function can not be returned here.
     return function() {
         let args = Array.prototype.slice.call(arguments);
-        let promise = new Promise(
+        return new Promise(
             (resolve, reject) => {
                 args.push(
                     (err, result) => {
@@ -17,7 +17,6 @@ function promisify (callbackBasedApi) {
                 callbackBasedApi.apply(null, args);
             }
         );
-        return promise;
     }
 }
 

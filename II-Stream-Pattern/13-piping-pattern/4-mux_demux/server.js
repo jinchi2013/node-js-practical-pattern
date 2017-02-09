@@ -8,7 +8,7 @@ function demultiplexChannel(source, destinations) {
 
     source
         .on('data', (data)=>{
-            var chunk;
+            let chunk;
             if(currentChannel === null) {
                 chunk = this.read(1);
                 currentChannel = chunk && chunk.readUInt8(0);

@@ -22,7 +22,7 @@ function multiplexChannels(sources, destination) {
     })
 }
 
-var socket = net.connect(3000, () => {
+const socket = net.connect(3000, () => {
     let child = child_process.fork(
         process.argv[2],
         process.argv.slice(3),
@@ -34,10 +34,10 @@ var socket = net.connect(3000, () => {
 socket.on('data', (data) => {
     console.log(`DATA: data got from the server -- ${data}`);
     // Close the client socket completely
-    client.destroy();
+    socket.destroy();
 });
 
 // Add a 'close event handler for the client socket
-client.on('close', ()=>{
+socket.on('close', ()=>{
     console.log('Connection Closed!');
 });

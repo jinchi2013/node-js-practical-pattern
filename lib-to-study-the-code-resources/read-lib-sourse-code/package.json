@@ -9,6 +9,7 @@
   "author": "cj",
   "license": "ISC",
   "dependencies": {
-    "dnode": "^1.2.2"
+    "dnode": "^1.2.2",
+    "restify": "^4.3.0"
   }
 }

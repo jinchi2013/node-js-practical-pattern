@@ -22,12 +22,11 @@ function createLoggingWritable(writableOrig) {
             }
             console.log(`Writing ${chunk}`);
 
-            /**
-             * this is also a good example to demonstrate the particular case of creating proxies of
-             * async functions, which makes necessary to proxy the callback as well.
-             * */
-
             return this.writableOrig.write(chunk, encoding, function(){
+                /**
+                 * this is also a good example to demonstrate the particular case of creating proxies of
+                 * async functions, which makes necessary to proxy the callback as well.
+                 * */
                 console.log(`Finished writing ${chunk}`);
                 callback && callback();
             });

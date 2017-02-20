@@ -4,8 +4,7 @@ module.exports = function(db) {
 			var match = Object.keys(pattern).every(function(k){
 				return pattern[k] === val[k];
 			});
-		
-
+			
 			if(match) {
 				listener(key, val);
 			}

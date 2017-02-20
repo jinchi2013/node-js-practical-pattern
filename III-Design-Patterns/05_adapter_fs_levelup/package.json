@@ -9,6 +9,7 @@
   "author": "cj",
   "license": "ISC",
   "dependencies": {
-    "level": "^1.6.0"
+    "level": "^1.6.0",
+    "level-filesystem": "^1.2.0"
   }
 }

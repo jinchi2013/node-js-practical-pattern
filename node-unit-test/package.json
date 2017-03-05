@@ -1,0 +1,25 @@
+{
+  "name": "node-unit-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test-unit",
+    "test-unit": "SET NODE_ENV=test mocha --require co-mocha 'lib/*.spec.js'"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "cj",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "co-mocha": "^1.2.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0"
+  },
+  "dependencies": {
+    "request": "^2.80.0"
+  }
+}

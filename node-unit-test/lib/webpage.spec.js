@@ -6,7 +6,7 @@ const expect = require('chai').expect
 const webpage = require('./webpage')
 
 describe('the webpage module', function() {
-	if('saves the content', function*() {
+	it('saves the content', function*() {
 		const url = 'google.com'
 		const content = '<h1>title</h1>'
 		const writeFileStub = this.sandbox.stub(fs, 'writeFile', function(filePath, fileContent, cb) {

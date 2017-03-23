@@ -11,6 +11,7 @@ http.createServer(function(req, res){
 		res.writeHead(200);
 
 		var subsetSum = new SubsetSum(url.query.sum, data);
+		// the new here is just subsetForkSum class, not the ProcessPool ! !
 
 		subsetSum.on('match', function(match) {
 			res.write(`Match: ${JSON.stringify(match)} \n`);

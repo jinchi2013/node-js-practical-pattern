@@ -39,3 +39,30 @@ ProcessPool.prototype.release = function(worker) {
 
 	this.pool.push(worker);
 }
+
+
+/**
+	process.nextTick()
+
+	The process.nextTick() method adds the callback to the "next tick queue". 
+	Once the current turn of the event loop turn runs to completion, 
+	all callbacks currently in the next tick queue will be called.
+
+	It runs before any additional I/O events (including timers) fire in subsequent ticks of the event loop.
+
+	Note: the next tick queue is completely drained on each pass of the event loop before additional I/O is processed. 
+	As a result, recursively setting nextTick callbacks will block any I/O from happening, just like a while(true); loop.
+
+*/
+
+/**
+	child_process.fork()
+
+	The child_process.fork() method is a special case of child_process.spawn() used specifically to spawn new Node.js processes. 
+	Like child_process.spawn(), a ChildProcess object is returned. 
+	The returned ChildProcess will have an additional communication channel built-in that allows messages to be passed back and 
+	forth between the parent and child. See child.send() for details.
+
+	
+
+*/

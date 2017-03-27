@@ -27,3 +27,9 @@ http.createServer(function(req, res){
 		res.end('I\m alive!\n');
 	}
 }).listen(8000, function() {console.log('Started!')});
+
+/**
+	url.parse(urlString, parseQueryString, slashedDenoteHost)
+	this method takes a Url string,
+	parse it and returns a URL object
+*/

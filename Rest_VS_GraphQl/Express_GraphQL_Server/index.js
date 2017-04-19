@@ -94,7 +94,7 @@ var root = {
 		if(!fakeDatabase[id]) {
 			throw new Error(`no message exists with id ${id}`);
 		}
-		// This replaces all old data, but some ap
+		// This replaces all old data, but some app require to just update one field
 		fakeDatabase[id] = Object.assign({},fakeDatabase[id], input);
 		return Message(id, fakeDatabase[id])
 	}

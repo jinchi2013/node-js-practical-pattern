@@ -6,23 +6,35 @@
 <body>
 	<h1>Hello!</h1>
 	<script type="text/javascript">
-		var dice = 3;
-		var sides = 6;
+		var author = 'andy';
+		var content = 'hope is a good thing';
 		var xhr = new XMLHttpRequest();
 		xhr.responseType = 'json';
-		xhr.open("POST", "/graphql");
+		xhr.open("POST", '/graphql');
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.setRequestHeader("Accept", "application/json");
 		xhr.onload = function() {
-			console.log('data returned', xhr.response);
+			console.log("data returned: " , xhr.response);
 		}
-		var query = `query RollDice($dice: Int!, $sides:Int){
-			rollDice(numDice: $dice, numSides: $sides)
+
+		var query = `mutation CreateMessage($input: MessageInput) {
+			createMessage(input: $input) {
+				id
+				content
+				author 
+			}
 		}`
+
 		xhr.send(JSON.stringify({
 			query: query,
-			variables: { dice: dice, sides: sides }
+			variables: {
+				input: {
+					author: author,
+					content: content,
+				}
+			}
 		}));
+
 	</script>
 </body>
 </html>

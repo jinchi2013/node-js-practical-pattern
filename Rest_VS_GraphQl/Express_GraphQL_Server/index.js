@@ -42,6 +42,8 @@ var root = {
 var app = express();
 
 app.get('/', (req, res)=> {
+
+	// must set root or serdFile methode will bump error with the path of the file
 	var options = {
 		root: __dirname
 	}

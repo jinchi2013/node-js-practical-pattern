@@ -2,6 +2,7 @@ const graphql = require('graphql');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// The promise of mongoose is deprecated, so reference mongoose.Promise to global.Promise
 mongoose.Promise = global.Promise;
 
 // Mongoose Schema definition

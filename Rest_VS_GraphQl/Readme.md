@@ -100,4 +100,4 @@ mutation addAvatar {
 
 4. GraphQL is always the smallest possible request, whilst REST generally defaults to the fullest. It's common practice to offer options like ?fields=foo,bar or partials.[Google recommendation for partial resource](https://developers.google.com/google-apps/tasks/performance#partial)
 
-5.
+5. GraphQL is a query language that allows the client to describe the data it needs and its shape by providing a common interface for client and server. An interface, between the client and the server, also makes retrieving data and manipulations more efficient because it encourages using **only the data needed, rather than retrieving a fixed set of data.**

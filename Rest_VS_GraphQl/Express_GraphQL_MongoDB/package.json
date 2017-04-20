@@ -1,0 +1,20 @@
+{
+  "name": "express-graphql-monodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "todos"
+  ],
+  "author": "cj",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-graphql": "^0.6.4",
+    "graphql": "^0.9.3",
+    "mongoose": "^4.9.5"
+  }
+}

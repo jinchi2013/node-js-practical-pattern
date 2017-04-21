@@ -4,15 +4,15 @@ const graphQLHTTP = require('express-graphql');
 const Schema = require('./schema');
 
 // This is just an internal test
-var query = `query {
-	todos {
-		id
-		completed
-	}
-}`;
-graphql(Schema, query).then( function(result) {
-	console.log(JSON.stringify(result, null, " "));
-});
+// var query = `query {
+// 	todos {
+// 		id
+// 		completed
+// 	}
+// }`;
+// graphql(Schema, query).then( function(result) {
+// 	console.log(JSON.stringify(result, null, " "));
+// });
 
 var app = express()
 	.use('/graphql', graphQLHTTP({

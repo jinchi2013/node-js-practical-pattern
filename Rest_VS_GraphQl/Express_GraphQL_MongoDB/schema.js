@@ -20,20 +20,6 @@ mongoose.connect(process.env.COMPOSE_URI || COMPOSE_URI_DEFAULT, (error) => {
 		console.log('mongolab connected!')
 })
 
-
-let TODOs = [
-	{
-		"id": 1446412739542,
-		"title": "Read emails",
-		"completed": false
-	},
-	{
-		"id": 1446412740883,
-	    "title": "Buy orange",
-	    "completed": true
-	}
-];
-
 // First define a type of each attribute: id, title, and completed
 const TodoType = new graphql.GraphQLObjectType({
 	name: 'todo',
@@ -58,16 +44,17 @@ var queryType = new graphql.GraphQLObjectType({
 	fields: function() {
 		return {
 			todos: {
-				type: new graphql.GraphQLList(TodoType),
+				type: new graphql.GraphQLList(TodoType), // GraphQLList defines a list of TodoType
 				// resolve: function() {
 				// 	return TODOs;
 				// } 
 				// for the case of async process
 				resolve: function() {
 					return new Promise(function(resolve, reject) {
-						setTimeout(function() {
-							resolve(TODOs);
-						}, 1500);
+						TODO.find((err, todos) => {
+							err ? reject(err) :
+								resolve(todos)
+						} )
 					});
 				}
 			}
@@ -81,6 +68,10 @@ var queryType = new graphql.GraphQLObjectType({
 	Your resolve method can act on the data before returning results
 
 	The idea is that if something was modified as part of a mutation, then the mutation also returns whatever was modified.
+*/
+
+/*
+	First mutation type, which will add a newTodo
 */
 
 var MutationAdd = {
@@ -100,6 +91,8 @@ var MutationAdd = {
 
 		newTodo.id = newTodo._id;
 		return new Promise((resolve, reject) => {
+			// .save(callback) will return a promise this is where the warning come from
+			// in mongodb driver like insertOne
 			newTodo.save((err) => {
 				if(err) {
 					reject(err)
@@ -109,12 +102,116 @@ var MutationAdd = {
 			})
 		})
 	}
+};
+
+var MutationToggle = {
+	type: TodoType,
+	description: 'Toggle the todo',
+	args: {
+		id: {
+			name: 'Todo Id',
+			type: new graphql.GraphQLNonNull(graphql.GraphQLString)
+		}
+	},
+	resolve: (root, {id}) => {
+		return new Promise((resolve, reject) => {
+			TODO.findById(id, (err, todo) => {
+				if(err) {
+					reject(err)
+					return
+				}
+
+				if(!todo) {
+					reject('Todo NOT found')
+					return
+				} else {
+					todo.completed = !todo.completed;
+					todo.save((err) => {
+						err ? reject(err) :
+							resolve(todo)
+					})
+				}
+			})
+		})
+	}
+};
+
+var MutationDestory = {
+	type: TodoType,
+	description: 'Destory the todo',
+	args: {
+		id: {
+			name: 'Todo Id',
+			type: new graphql.GraphQLNonNull(graphql.GraphQLString)
+		}
+	},
+	resolve:(root, {id}) => {
+		return new Promise((resolve, reject) => {
+			TODO.findById(id, (err, todo) => {
+				if(err) {
+					reject(err)
+				} else if (!todo) {
+					reject('Todo NOT found')
+				} else {
+					todo.remove((err) => {
+						err ? reject(err) :
+							resolve(todo)
+					})
+				}
+			})
+		})
+	}
+}
+
+var MutationToggleAll = {
+	type: new graphql.GraphQLList(TodoType),
+	description: 'Toggle all todos',
+	args: {
+		checked: {
+			name: 'Todos check',
+			type: new graphql.GraphQLNonNull(graphql.GraphQLBoolean)
+		}
+	},
+	resolve: (root, {checked}) => {
+		return new Promise((resolve, reject) => {
+			TODO.find((err, todos)=> {
+				if(err) {
+					reject(err)
+					return
+				}
+
+				TODO.update({
+					_id: {
+						$in: todos.map(todo => todo._id)
+					}
+				},
+				{
+					completed: checked
+				},
+				{
+					multi: true
+				}, (err) => {
+					if(err) reject(err)
+						else TODO.find((err, updatedTodos) => {
+							if(err) {
+								reject(err)
+							} else {
+								resolve(updatedTodos)
+							}
+						})
+				})
+			} )
+		})
+	}
 }
 
 var MutationType = new graphql.GraphQLObjectType({
 	name: 'Mutation',
 	fields: {
-		add: MutationAdd
+		add: MutationAdd,
+		toggle: MutationToggle,
+		destory: MutationDestory,
+		toggleAll: MutationToggleAll
 	}
 });
 
